@@ -1,0 +1,57 @@
+{% extends 'store/base.html' %}
+{% block title %} Welcome to Sekani Frill {% endblock %}
+
+{% block content %}
+<section class="relative bg-gradient-to-br from-white via-blue-50 to-blue-100 overflow-hidden">
+  <!-- Background Accent Image -->
+  <div class="absolute inset-0">
+    <img src="https://images.pexels.com/photos/30902864/pexels-photo-30902864.jpeg?auto=compress&cs=tinysrgb&w=2000" 
+         alt="Elegant jewellery hero background" 
+         class="w-full h-full object-cover opacity-20">
+  </div>
+
+  <!-- Overlay for subtle shading -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white/80 to-transparent"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 flex flex-col lg:flex-row items-center justify-between">
+    <!-- Text Section -->
+    <div class="max-w-xl text-center lg:text-left">
+      <p class="uppercase tracking-widest text-blue-600 font-semibold mb-3">
+        Sekani Frill
+      </p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+        Jewellery That <span class="text-blue-600">Speaks Your Story</span>
+      </h1>
+      <p class="text-lg text-gray-600 mb-8">
+        Discover our curated selection of earrings and hair-clips — designed to elevate every moment with subtle luxury.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <a href="{% url 'shop' %}" 
+           class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-medium shadow hover:bg-blue-700 transition">
+          Shop Collection
+        </a>
+        <a href="#about" 
+           class="inline-block border border-blue-600 text-blue-600 px-8 py-3 rounded-md font-medium hover:bg-blue-50 transition">
+          Learn More
+        </a>
+      </div>
+    </div>
+
+    <!-- Product Image Section -->
+    <div class="mt-12 lg:mt-0 lg:ml-16 relative">
+      <div class="absolute inset-0 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
+      <img src="https://images.pexels.com/photos/28664773/pexels-photo-28664773.jpeg?auto=compress&cs=tinysrgb&w=800" 
+           alt="Featured earrings and hairclip" 
+           class="relative w-80 h-80 object-cover rounded-2xl shadow-xl transform hover:scale-105 transition duration-700 ease-out">
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto py-2 px-6 xl:px-0">
+    <div class="products flex items-center flex-wrap">
+        {% for product in products %}
+            {% include 'product/partials/product_list_item.html' %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

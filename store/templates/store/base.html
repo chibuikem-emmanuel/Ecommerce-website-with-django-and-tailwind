@@ -1,0 +1,145 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>{% block title %} {% endblock %} | Sekani Frill</title>
+    </head>
+
+    <body>
+
+        
+
+        <nav class="border-b border-gray-300">
+            <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 flex items-center justify-between">
+                <div class="menu-left flex items-center space-x-6">
+                    <a href="{% url 'frontpage' %}" class="py-4 text-lg text-blue-500 font-semibold">Sekani Frill</a>
+
+                    <ul class="flex items-center space-x-4">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="#">About</a></li>
+
+                        {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Log in</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="menu-right flex items-center space-x-4">
+                    <a href="{% url 'myaccount' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </a>
+
+        
+        <div 
+        hx-get="{% url 'hx_menu_cart' %}"
+        hx-trigger="update-menu-cart from:body"
+        hx-swap="innerHTML"
+        >
+                {% include 'cart/menu_cart.html'  %}
+          
+        </div>
+                   
+                </div>
+            </div>
+        </nav>
+
+
+
+        <main>
+            
+            {% block content %}
+            {% endblock %}
+        </main>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<footer class="bg-gradient-to-b from-white via-blue-50 to-blue-100 border-t border-blue-200">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+    <!-- Brand Section -->
+    <div>
+      <h2 class="text-2xl font-extrabold text-blue-700 tracking-tight mb-4">
+        Sekani Frill
+      </h2>
+      <p class="text-gray-600 mb-4">
+        Timeless jewelry handcrafted with precision and love — because elegance never goes out of style.
+      </p>
+      <div class="flex space-x-4 mt-4">
+        <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+
+    <!-- Shop Links -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Shop</h3>
+      <ul class="space-y-3 text-gray-600">
+        <li><a href="#" class="hover:text-blue-600 transition">Earrings</a></li>
+        <li><a href="#" class="hover:text-blue-600 transition">Hairclips</a></li>
+        <li><a href="#" class="hover:text-blue-600 transition">Necklaces</a></li>
+        <li><a href="#" class="hover:text-blue-600 transition">Bracelets</a></li>
+      </ul>
+    </div>
+
+    <!-- About Links -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">About</h3>
+      <ul class="space-y-3 text-gray-600">
+        <li><a href="#" class="hover:text-blue-600 transition">Our Story</a></li>
+        <li><a href="#" class="hover:text-blue-600 transition">Craftsmanship</a></li>
+        <li><a href="#" class="hover:text-blue-600 transition">Sustainability</a></li>
+        <li><a href="#" class="hover:text-blue-600 transition">Careers</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">Join Our Newsletter</h3>
+      <p class="text-gray-600 mb-4">Get exclusive offers and styling tips directly to your inbox.</p>
+      <form class="flex flex-col sm:flex-row gap-3">
+        <input type="email" placeholder="Your email address"
+               class="flex-1 border border-blue-200 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <button type="submit"
+                class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-blue-200 mt-10">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center text-gray-500 text-sm">
+      <p>&copy; 2025 <span class="text-blue-600 font-semibold">Sekani Frill</span>. All rights reserved.</p>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-blue-600 transition">Terms of Service</a>
+        <a href="#" class="hover:text-blue-600 transition">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+            <script src="http://unpkg.com/htmx.org@1.7.0"></script>
+    </body>
+</html>
+
+
+
+   
